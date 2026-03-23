@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home": "Home",
+    "contacts": "Contatti",
+    "favorites": "Preferiti"
+  },
+  "hero": {
+    "title": "Immobili di Lusso in Italia",
+    "subtitle": "Proprietà esclusive nelle località più prestigiose d'Italia",
+    "cta": "Scopri le Proprietà"
+  },
+  "properties": {
+    "title": "Proprietà in Evidenza",
+    "subtitle": "Scopri la nostra selezione di proprietà italiane raffinate",
+    "rooms": "Stanze",
+    "bathrooms": "Bagni",
+    "area": "Superficie",
+    "price": "Prezzo",
+    "location": "Posizione",
+    "details": "Dettagli",
+    "addFavorite": "Aggiungi ai Preferiti",
+    "removeFavorite": "Rimuovi dai Preferiti",
+    "features": "Caratteristiche",
+    "description": "Descrizione",
+    "requestInfo": "Richiedi Informazioni",
+    "back": "Torna alle Proprietà",
+    "sqm": "m²"
+  },
+  "about": {
+    "title": "Perché Scegliere URSU",
+    "subtitle": "Il vostro partner affidabile nel mercato immobiliare italiano",
+    "experience": "Anni di Esperienza",
+    "experienceDesc": "Oltre un decennio di competenza nel mercato immobiliare di lusso italiano",
+    "properties": "Proprietà Esclusive",
+    "propertiesDesc": "Selezione curata di appartamenti, ville e attici premium",
+    "service": "Servizio Completo",
+    "serviceDesc": "Supporto completo dalla ricerca all'acquisto"
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Siamo qui per aiutarti a trovare la proprietà dei tuoi sogni in Italia",
+    "name": "Nome Completo",
+    "email": "Indirizzo Email",
+    "phone": "Numero di Telefono",
+    "message": "Messaggio",
+    "property": "Proprietà di Interesse",
+    "send": "Invia Richiesta",
+    "success": "La tua richiesta è stata inviata con successo! Ti contatteremo a breve.",
+    "namePlaceholder": "Inserisci il tuo nome completo",
+    "emailPlaceholder": "Inserisci il tuo indirizzo email",
+    "phonePlaceholder": "+39 000 000 0000",
+    "messagePlaceholder": "Raccontaci cosa stai cercando...",
+    "info": "Informazioni di Contatto",
+    "address": "Via Roma 15, 20121 Milano, Italia",
+    "workHours": "Orari di Lavoro",
+    "workHoursValue": "Lun — Ven: 9:00 — 18:00",
+    "followUs": "Seguici"
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati",
+    "company": "URSU Real Estate",
+    "tagline": "Proprietà Italiane di Lusso"
+  },
+  "favorites": {
+    "empty": "Nessun preferito ancora",
+    "emptyDesc": "Sfoglia le proprietà e aggiungile ai tuoi preferiti"
+  }
+}

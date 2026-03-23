@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "home": "Home",
+    "contacts": "Contacts",
+    "favorites": "Favorites"
+  },
+  "hero": {
+    "title": "Luxury Real Estate in Italy",
+    "subtitle": "Exclusive properties in the most prestigious locations across Italy",
+    "cta": "View Properties"
+  },
+  "properties": {
+    "title": "Featured Properties",
+    "subtitle": "Discover our curated selection of exquisite Italian properties",
+    "rooms": "Rooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "price": "Price",
+    "location": "Location",
+    "details": "View Details",
+    "addFavorite": "Add to Favorites",
+    "removeFavorite": "Remove from Favorites",
+    "features": "Features",
+    "description": "Description",
+    "requestInfo": "Request Information",
+    "back": "Back to Properties",
+    "sqm": "m²"
+  },
+  "about": {
+    "title": "Why Choose URSU",
+    "subtitle": "Your trusted partner in Italian real estate",
+    "experience": "Years of Experience",
+    "experienceDesc": "Over a decade of expertise in the Italian luxury real estate market",
+    "properties": "Exclusive Properties",
+    "propertiesDesc": "Hand-picked selection of premium apartments, villas, and penthouses",
+    "service": "Full Service",
+    "serviceDesc": "Complete support from property search to purchase completion"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to help you find your dream property in Italy",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "message": "Message",
+    "property": "Property of Interest",
+    "send": "Send Request",
+    "success": "Your request has been sent successfully! We will contact you shortly.",
+    "namePlaceholder": "Enter your full name",
+    "emailPlaceholder": "Enter your email address",
+    "phonePlaceholder": "+39 000 000 0000",
+    "messagePlaceholder": "Tell us what you are looking for...",
+    "info": "Contact Information",
+    "address": "Via Roma 15, 20121 Milano, Italy",
+    "workHours": "Working Hours",
+    "workHoursValue": "Mon — Fri: 9:00 — 18:00",
+    "followUs": "Follow Us"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "company": "URSU Real Estate",
+    "tagline": "Luxury Italian Properties"
+  },
+  "favorites": {
+    "empty": "No favorites yet",
+    "emptyDesc": "Browse properties and add them to your favorites"
+  }
+}
