@@ -46,7 +46,7 @@ export function PropertyCard({ property, lang, dict }: PropertyCardProps) {
             >
               <Heart
                 className={`h-4 w-4 transition-colors ${
-                  fav ? 'fill-red-500 text-red-500' : 'text-foreground/70'
+                  fav ? 'fill-primary text-primary' : 'text-foreground/70'
                 }`}
               />
             </Button>

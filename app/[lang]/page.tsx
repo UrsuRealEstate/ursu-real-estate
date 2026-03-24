@@ -17,7 +17,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       {/* Hero Section */}
       <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden bg-background pt-20 border-b border-border">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
-        
+
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-10">
           <ScrollReveal>
             <div className="inline-flex items-center justify-center space-x-4 mb-8 uppercase tracking-[0.3em] text-xs text-primary font-medium">
@@ -32,14 +32,14 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               {dict.hero.title}
             </h1>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={300}>
             <p className="text-lg sm:text-xl text-muted-foreground font-light mb-12 max-w-2xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </ScrollReveal>
-          
-          <ScrollReveal delay={450}>
+
+          <ScrollReveal delay={450} className='mb-10'>
             <Link href={`/${lang}#properties`}>
               <Button size="lg" className="h-14 px-10 uppercase tracking-widest text-sm bg-primary text-primary-foreground hover:bg-primary/90">
                 {dict.hero.cta}

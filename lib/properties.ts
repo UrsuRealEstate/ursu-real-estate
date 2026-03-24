@@ -39,7 +39,7 @@ export const properties: Property[] = [
     },
     city: { en: 'Positano', ru: 'Позитано', it: 'Positano' },
     image: '/properties/property-1.png',
-    images: ['/properties/property-1.png'],
+    images: ['/properties/property-1.png', '/properties/property-2.png', '/properties/property-3.png'],
     features: {
       en: ['Sea View', 'Marble Floors', 'Terrace', 'Air Conditioning', 'Parking'],
       ru: ['Вид на море', 'Мраморные полы', 'Терраса', 'Кондиционер', 'Парковка'],
@@ -70,7 +70,7 @@ export const properties: Property[] = [
     },
     city: { en: 'Chianti', ru: 'Кьянти', it: 'Chianti' },
     image: '/properties/property-2.png',
-    images: ['/properties/property-2.png'],
+    images: ['/properties/property-2.png', '/properties/property-4.png', '/properties/property-1.png'],
     features: {
       en: ['Swimming Pool', 'Garden', 'Olive Grove', 'Wine Cellar', 'Fireplace', 'Restored'],
       ru: ['Бассейн', 'Сад', 'Оливковая роща', 'Винный погреб', 'Камин', 'Реставрация'],
@@ -101,7 +101,7 @@ export const properties: Property[] = [
     },
     city: { en: 'Milan', ru: 'Милан', it: 'Milano' },
     image: '/properties/property-3.png',
-    images: ['/properties/property-3.png'],
+    images: ['/properties/property-3.png', '/properties/property-1.png', '/properties/property-4.png'],
     features: {
       en: ['Rooftop Terrace', 'City View', 'Designer Kitchen', 'Concierge', 'Gym', 'Smart Home'],
       ru: ['Терраса на крыше', 'Вид на город', 'Дизайнерская кухня', 'Консьерж', 'Спортзал', 'Умный дом'],
@@ -132,7 +132,7 @@ export const properties: Property[] = [
     },
     city: { en: 'Rome', ru: 'Рим', it: 'Roma' },
     image: '/properties/property-4.png',
-    images: ['/properties/property-4.png'],
+    images: ['/properties/property-4.png', '/properties/property-3.png', '/properties/property-2.png'],
     features: {
       en: ['Frescoed Ceilings', 'Parquet Floors', 'Fireplace', 'Balcony', 'Elevator', 'Wine Cellar'],
       ru: ['Потолки с фресками', 'Паркетные полы', 'Камин', 'Балкон', 'Лифт', 'Винный погреб'],

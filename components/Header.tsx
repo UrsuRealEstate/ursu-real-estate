@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { type Locale } from '@/lib/i18n'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { useFavorites } from './FavoritesProvider'
@@ -13,13 +14,16 @@ import {
   SheetContent,
   SheetTrigger,
   SheetTitle,
+  SheetDescription,
 } from '@/components/ui/sheet'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 export function Header({ lang }: { lang: Locale }) {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [dict, setDict] = useState<any>(null)
   const { favoritesCount } = useFavorites()
+  const pathname = usePathname()
 
   useEffect(() => {
     import(`@/app/[lang]/dictionaries/${lang}.json`).then((module) => {
@@ -50,15 +54,20 @@ export function Header({ lang }: { lang: Locale }) {
 
         {/* Left: Desktop Nav */}
         <nav className="hidden md:flex items-center justify-start gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm tracking-wide uppercase transition-colors text-primary-foreground/80 hover:text-primary-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || pathname === `${link.href}/`
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm tracking-wide uppercase transition-colors hover:text-primary-foreground ${
+                  isActive ? 'text-primary-foreground font-semibold' : 'text-primary-foreground/80'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         {/* Center: Logo (Left on Mobile) */}
@@ -69,7 +78,7 @@ export function Header({ lang }: { lang: Locale }) {
               alt="URSU Logo"
               width={673}
               height={273}
-              className="w-auto h-8 sm:h-12 object-contain"
+              className="w-auto h-8 sm:h-10 object-contain"
               priority
             />
           </Link>
@@ -82,50 +91,64 @@ export function Header({ lang }: { lang: Locale }) {
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher currentLang={lang} />
 
-            <Button variant="ghost" size="icon" className="relative hover:bg-white/10 text-primary-foreground" aria-label={dict.nav.favorites}>
-              <Heart className="h-5 w-5" />
-              {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary-foreground text-primary text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
-                  {favoritesCount}
-                </span>
-              )}
-            </Button>
+            <Link href={`/${lang}/favorites`}>
+              <Button variant="ghost" size="icon" className="relative hover:bg-white/10 text-primary-foreground" aria-label={dict.nav.favorites}>
+                <Heart className="h-5 w-5" />
+                {favoritesCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary-foreground text-primary text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">
+                    {favoritesCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Actions */}
           <div className="md:hidden flex items-center gap-2">
             <LanguageSwitcher currentLang={lang} />
-            <Sheet>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="hover:bg-white/10 text-primary-foreground">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] flex flex-col pt-16">
+              <SheetContent side="right" className="w-[300px] flex flex-col pt-16 px-8 border-l border-border/50 shadow-2xl">
                 <VisuallyHidden>
                   <SheetTitle>Menu</SheetTitle>
+                  <SheetDescription>Navigation menu for URSU Real Estate</SheetDescription>
                 </VisuallyHidden>
-                <nav className="flex flex-col gap-6">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-lg uppercase tracking-wider text-foreground hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+
+                <nav className="flex flex-col gap-8">
+                  {navLinks.map((link) => {
+                    const isActive = pathname === link.href || pathname === `${link.href}/`
+                    return (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`text-lg uppercase tracking-wider transition-colors ${
+                          isActive ? 'text-primary font-medium' : 'text-foreground hover:text-primary'
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    )
+                  })}
                   <div className="h-px bg-border w-full my-2" />
-                  <div className="flex items-center gap-3 text-lg uppercase tracking-wider">
-                    <Heart className="h-5 w-5 text-primary" />
+                  <Link 
+                    href={`/${lang}/favorites`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-3 text-lg uppercase tracking-wider hover:text-primary transition-colors"
+                  >
+                    <Heart className={`h-5 w-5 ${pathname && pathname.includes('/favorites') ? 'fill-primary text-primary' : 'text-primary'}`} />
                     <span>{dict.nav.favorites}</span>
                     {favoritesCount > 0 && (
                       <span className="bg-primary px-2 py-0.5 text-xs text-primary-foreground rounded-full ml-auto">
                         {favoritesCount}
                       </span>
                     )}
-                  </div>
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>

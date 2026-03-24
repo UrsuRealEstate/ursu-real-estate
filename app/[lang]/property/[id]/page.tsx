@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getDictionary, hasLocale, type Locale } from '../../dictionaries'
 import { properties, getProperty, formatPrice } from '@/lib/properties'
 import { PropertyActions } from './PropertyActions'
+import { ShareButton } from '@/components/ShareButton'
 import { InquiryForm } from '@/components/InquiryForm'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { ArrowLeft, MapPin, Maximize, BedDouble, Bath } from 'lucide-react'
@@ -70,9 +71,15 @@ export default async function PropertyPage({
                 {property.title[locale]}
               </h1>
 
-              <p className="text-3xl font-semibold text-primary mb-8">
-                {formatPrice(property.price, property.currency)}
-              </p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+                <p className="text-3xl sm:text-4xl font-semibold text-primary">
+                  {formatPrice(property.price, property.currency)}
+                </p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <PropertyActions propertyId={property.id} dict={dict} />
+                  <ShareButton title={property.title[locale]} text={property.description[locale]} lang={locale} />
+                </div>
+              </div>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 py-6 border-y border-border mb-8">
@@ -103,7 +110,7 @@ export default async function PropertyPage({
 
             <ScrollReveal delay={200}>
               <h2 className="text-xl font-medium mb-4">{dict.properties.features}</h2>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 mb-12">
                 {property.features[locale].map((f) => (
                   <span
                     key={f}
@@ -111,6 +118,25 @@ export default async function PropertyPage({
                   >
                     {f}
                   </span>
+                ))}
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={250}>
+              <h2 className="text-xl font-medium mb-4">
+                {(dict.properties as any).gallery || (locale === 'ru' ? 'Галерея' : locale === 'it' ? 'Galleria' : 'Gallery')}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                {property.images.map((img, idx) => (
+                  <div key={idx} className="relative aspect-[4/3] overflow-hidden border border-border">
+                    <Image
+                      src={img}
+                      alt={`${property.title[locale]} - ${idx + 1}`}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
                 ))}
               </div>
             </ScrollReveal>

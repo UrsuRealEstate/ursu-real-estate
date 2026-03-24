@@ -29,7 +29,7 @@ export async function Footer({ lang }: { lang: Locale }) {
               {dict.contact.info}
             </h3>
             <p className="text-white/50 text-sm">{dict.contact.address}</p>
-            <p className="text-white/50 text-sm">info@ursurealestate.it</p>
+            <p className="text-white/50 text-sm">info@ursurealestate.com</p>
             <p className="text-white/50 text-sm">+39 02 1234 5678</p>
           </div>
 

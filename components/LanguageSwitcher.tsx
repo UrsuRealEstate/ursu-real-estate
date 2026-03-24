@@ -23,7 +23,7 @@ export function LanguageSwitcher({ currentLang }: { currentLang: Locale }) {
   }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="w-9 px-0 hover:bg-white/10 text-primary-foreground">
           <Globe className="h-[1.2rem] w-[1.2rem]" />

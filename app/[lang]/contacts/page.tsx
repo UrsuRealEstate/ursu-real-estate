@@ -69,7 +69,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
                     <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
                       {dict.contact.email}
                     </h3>
-                    <p className="text-muted-foreground">info@ursurealestate.it</p>
+                    <p className="text-muted-foreground">info@ursurealestate.com</p>
                   </div>
                 </div>
               </ScrollReveal>
