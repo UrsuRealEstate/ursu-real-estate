@@ -60,9 +60,8 @@ export function Header({ lang }: { lang: Locale }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm tracking-wide uppercase transition-colors hover:text-primary-foreground ${
-                  isActive ? 'text-primary-foreground font-semibold' : 'text-primary-foreground/80'
-                }`}
+                className={`text-sm tracking-wide uppercase transition-colors hover:text-primary-foreground ${isActive ? 'text-primary-foreground font-semibold' : 'text-primary-foreground/80'
+                  }`}
               >
                 {link.label}
               </Link>
@@ -74,7 +73,7 @@ export function Header({ lang }: { lang: Locale }) {
         <div className="flex md:justify-center w-full">
           <Link href={`/${lang}`} className="flex items-center gap-2 z-10">
             <Image
-              src="/ursu-logo2.png"
+              src="/ursu-logo3.png"
               alt="URSU Logo"
               width={673}
               height={273}
@@ -127,16 +126,15 @@ export function Header({ lang }: { lang: Locale }) {
                         key={link.href}
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`text-lg uppercase tracking-wider transition-colors ${
-                          isActive ? 'text-primary font-medium' : 'text-foreground hover:text-primary'
-                        }`}
+                        className={`text-lg uppercase tracking-wider transition-colors ${isActive ? 'text-primary font-medium' : 'text-foreground hover:text-primary'
+                          }`}
                       >
                         {link.label}
                       </Link>
                     )
                   })}
                   <div className="h-px bg-border w-full my-2" />
-                  <Link 
+                  <Link
                     href={`/${lang}/favorites`}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center gap-3 text-lg uppercase tracking-wider hover:text-primary transition-colors"
