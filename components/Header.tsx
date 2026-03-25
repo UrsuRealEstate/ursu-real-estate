@@ -73,7 +73,7 @@ export function Header({ lang }: { lang: Locale }) {
         <div className="flex md:justify-center w-full">
           <Link href={`/${lang}`} className="flex items-center gap-2 z-10">
             <Image
-              src="/ursu-logo4.png"
+              src="/ursu-logo5.png"
               alt="URSU Logo"
               width={673}
               height={273}

@@ -13,7 +13,7 @@ export async function Footer({ lang }: { lang: Locale }) {
 
           <div className="flex flex-col gap-6 items-start">
             <Image
-              src="/ursu-logo4.png"
+              src="/ursu-logo5.png"
               alt="URSU Logo"
               width={657}
               height={264}
