@@ -24,7 +24,9 @@
     "description": "Descrizione",
     "requestInfo": "Richiedi Informazioni",
     "back": "Torna alle Proprietà",
-    "sqm": "m²"
+    "sqm": "m²",
+    "floors": "Piani",
+    "lotSize": "Sup. Lotto"
   },
   "about": {
     "title": "Perché Scegliere URSU",

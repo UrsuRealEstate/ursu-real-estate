@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getDictionary, hasLocale, type Locale } from '../dictionaries'
+import { getPropertiesFromDB } from '@/lib/properties.server'
 import { FavoritesList } from './FavoritesList'
 
 export default async function FavoritesPage({
@@ -9,7 +10,10 @@ export default async function FavoritesPage({
 }) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
-  const dict = await getDictionary(lang as Locale)
+  const [dict, properties] = await Promise.all([
+    getDictionary(lang as Locale),
+    getPropertiesFromDB(),
+  ])
 
   return (
     <div className="min-h-screen container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 flex flex-col items-center">
@@ -21,7 +25,7 @@ export default async function FavoritesPage({
       </div>
 
       <div className="w-full">
-        <FavoritesList lang={lang as Locale} dict={dict} />
+        <FavoritesList lang={lang as Locale} dict={dict} properties={properties} />
       </div>
     </div>
   )

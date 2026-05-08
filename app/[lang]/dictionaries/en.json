@@ -24,7 +24,9 @@
     "description": "Description",
     "requestInfo": "Request Information",
     "back": "Back to Properties",
-    "sqm": "m²"
+    "sqm": "m²",
+    "floors": "Floors",
+    "lotSize": "Lot Size"
   },
   "about": {
     "title": "Why Choose URSU",

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getDictionary, hasLocale, type Locale } from './dictionaries'
-import { properties } from '@/lib/properties'
+import { getPropertiesFromDB } from '@/lib/properties.server'
 import { PropertyCard } from '@/components/PropertyCard'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { ArrowRight, Building, Clock, ShieldCheck } from 'lucide-react'
@@ -11,6 +11,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
   const dict = await getDictionary(lang as Locale)
+  const properties = await getPropertiesFromDB()
 
   return (
     <>
@@ -68,7 +69,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {properties.map((property, i) => (
               <ScrollReveal key={property.id} delay={i * 150}>
-                <PropertyCard property={property} lang={lang as Locale} dict={dict} />
+                <PropertyCard property={property} lang={lang as Locale} dict={dict} priority={i === 0} />
               </ScrollReveal>
             ))}
           </div>

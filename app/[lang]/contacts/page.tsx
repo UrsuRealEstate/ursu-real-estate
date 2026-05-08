@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getDictionary, hasLocale, type Locale } from '../dictionaries'
+import { getContactSettings, formatWorkHours } from '@/lib/settings'
 import { InquiryForm } from '@/components/InquiryForm'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
@@ -8,6 +9,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
   const dict = await getDictionary(lang as Locale)
+  const settings = await getContactSettings()
 
   return (
     <div className="min-h-screen py-12 lg:py-20">
@@ -41,7 +43,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
                     <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
                       {dict.properties.location}
                     </h3>
-                    <p className="text-muted-foreground">{dict.contact.address}</p>
+                    <p className="text-muted-foreground">{settings.address}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -55,7 +57,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
                     <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
                       {dict.contact.phone}
                     </h3>
-                    <p className="text-muted-foreground">+39 02 1234 5678</p>
+                    <p className="text-muted-foreground">{settings.phone}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -69,7 +71,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
                     <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
                       {dict.contact.email}
                     </h3>
-                    <p className="text-muted-foreground">info@ursurealestate.com</p>
+                    <p className="text-muted-foreground">{settings.email}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -83,7 +85,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
                     <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
                       {dict.contact.workHours}
                     </h3>
-                    <p className="text-muted-foreground">{dict.contact.workHoursValue}</p>
+                    <p className="text-muted-foreground">{formatWorkHours(settings, lang)}</p>
                   </div>
                 </div>
               </ScrollReveal>

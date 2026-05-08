@@ -1,9 +1,11 @@
 import { type Locale } from '@/lib/i18n'
+import { getContactSettings, formatWorkHours } from '@/lib/settings'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export async function Footer({ lang }: { lang: Locale }) {
   const dict = await import(`@/app/[lang]/dictionaries/${lang}.json`).then(m => m.default)
+  const settings = await getContactSettings()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -28,9 +30,10 @@ export async function Footer({ lang }: { lang: Locale }) {
             <h3 className="uppercase tracking-widest text-sm text-white/70 mb-2">
               {dict.contact.info}
             </h3>
-            <p className="text-white/50 text-sm">{dict.contact.address}</p>
-            <p className="text-white/50 text-sm">info@ursurealestate.com</p>
-            <p className="text-white/50 text-sm">+39 02 1234 5678</p>
+            <p className="text-white/50 text-sm">{settings.address}</p>
+            <p className="text-white/50 text-sm">{settings.email}</p>
+            <p className="text-white/50 text-sm">{settings.phone}</p>
+            <p className="text-white/50 text-sm">{formatWorkHours(settings, lang)}</p>
           </div>
 
           <div className="flex flex-col gap-4">
