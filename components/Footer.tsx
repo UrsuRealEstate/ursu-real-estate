@@ -56,6 +56,14 @@ export async function Footer({ lang }: { lang: Locale }) {
           <p className="text-white/40 text-xs">
             © {currentYear} {dict.footer.company}. {dict.footer.rights}.
           </p>
+          <div className="flex items-center gap-6">
+            <Link href={`/${lang}/privacy`} className="text-white/30 text-xs hover:text-white/60 transition-colors">
+              {dict.legal.privacyPolicy}
+            </Link>
+            <Link href={`/${lang}/cookies`} className="text-white/30 text-xs hover:text-white/60 transition-colors">
+              {dict.legal.cookiePolicy}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

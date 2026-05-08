@@ -178,7 +178,7 @@ export default async function PropertyPage({
             <ScrollReveal delay={200}>
               <div className="sticky top-28 border border-border bg-card p-6 sm:p-8">
                 <h3 className="text-xl font-medium mb-6">{dict.properties.requestInfo}</h3>
-                <InquiryForm dict={dict} propertyTitle={property.title[locale]} />
+                <InquiryForm dict={dict} propertyTitle={property.title[locale]} lang={locale} />
               </div>
             </ScrollReveal>
           </div>

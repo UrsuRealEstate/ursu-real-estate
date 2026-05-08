@@ -4,6 +4,7 @@ import { FavoritesProvider } from '@/components/FavoritesProvider'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { HtmlLang } from '@/components/HtmlLang'
+import { CookieConsentBanner } from '@/components/CookieConsentBanner'
 
 const META: Record<string, { title: string; description: string; ogLocale: string }> = {
   en: {
@@ -57,6 +58,7 @@ export default async function LocaleLayout({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
+  const dict = await import(`@/app/[lang]/dictionaries/${lang}.json`).then(m => m.default)
 
   return (
     <>
@@ -70,6 +72,7 @@ export default async function LocaleLayout({
           <Footer lang={lang as Locale} />
         </div>
       </FavoritesProvider>
+      <CookieConsentBanner lang={lang} dict={dict} />
     </>
   )
 }

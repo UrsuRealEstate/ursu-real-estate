@@ -37,6 +37,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             Properties
           </Link>
           <Link
+            href="/admin/inquiries"
+            className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+          >
+            Inquiries
+          </Link>
+          <Link
             href="/admin/users"
             className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
           >

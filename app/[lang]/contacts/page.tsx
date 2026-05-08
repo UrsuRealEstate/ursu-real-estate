@@ -95,7 +95,7 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
           {/* Contact Form */}
           <ScrollReveal delay={200}>
             <div className="border border-border bg-card p-6 sm:p-8 lg:p-10">
-              <InquiryForm dict={dict} />
+              <InquiryForm dict={dict} lang={lang} />
             </div>
           </ScrollReveal>
         </div>

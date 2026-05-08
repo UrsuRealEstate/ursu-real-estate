@@ -66,5 +66,17 @@
   "favorites": {
     "empty": "No favorites yet",
     "emptyDesc": "Browse properties and add them to your favorites"
+  },
+  "legal": {
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
+  },
+  "cookieBanner": {
+    "text": "This website uses essential cookies to ensure its proper operation. No tracking or analytics cookies are used.",
+    "accept": "I understand",
+    "learnMore": "Cookie Policy"
+  },
+  "contact_ext": {
+    "privacyConsent": "I agree to the Privacy Policy"
   }
 }
