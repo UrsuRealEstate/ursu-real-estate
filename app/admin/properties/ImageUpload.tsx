@@ -7,6 +7,12 @@ import { Button } from '@/components/ui/button'
 
 const supabase = createClient()
 
+function storagePath(url: string): string {
+  const marker = '/properties/'
+  const i = url.indexOf(marker)
+  return i >= 0 ? url.slice(i + marker.length) : url
+}
+
 interface Props {
   name: string
   multiple?: boolean
@@ -18,6 +24,8 @@ export default function ImageUpload({ name, multiple = false, initialUrls = [] }
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const [dragIndex, setDragIndex] = useState<number | null>(null)
+  const [dragOver, setDragOver] = useState<number | null>(null)
 
   async function handleFiles(files: FileList | null) {
     if (!files?.length) return
@@ -38,12 +46,33 @@ export default function ImageUpload({ name, multiple = false, initialUrls = [] }
       newUrls.push(data.publicUrl)
     }
 
-    setUrls(prev => multiple ? [...prev, ...newUrls] : newUrls.slice(0, 1))
+    setUrls(prev => {
+      if (multiple) return [...prev, ...newUrls]
+      if (prev[0]) supabase.storage.from('properties').remove([storagePath(prev[0])])
+      return newUrls.slice(0, 1)
+    })
     setUploading(false)
   }
 
-  function removeUrl(idx: number) {
+  async function removeUrl(idx: number) {
+    const url = urls[idx]
     setUrls(prev => prev.filter((_, i) => i !== idx))
+    await supabase.storage.from('properties').remove([storagePath(url)])
+  }
+
+  function handleDragStart(idx: number) { setDragIndex(idx) }
+  function handleDragOver(e: React.DragEvent, idx: number) { e.preventDefault(); setDragOver(idx) }
+  function handleDragEnd() { setDragIndex(null); setDragOver(null) }
+  function handleDrop(idx: number) {
+    if (dragIndex === null || dragIndex === idx) { setDragIndex(null); setDragOver(null); return }
+    setUrls(prev => {
+      const next = [...prev]
+      const [moved] = next.splice(dragIndex, 1)
+      next.splice(idx, 0, moved)
+      return next
+    })
+    setDragIndex(null)
+    setDragOver(null)
   }
 
   const displayValue = multiple ? JSON.stringify(urls) : (urls[0] ?? '')
@@ -54,7 +83,20 @@ export default function ImageUpload({ name, multiple = false, initialUrls = [] }
       {urls.length > 0 && (
         <div className="flex flex-wrap gap-3">
           {urls.map((url, i) => (
-            <div key={i} className="relative group">
+            <div
+              key={url}
+              draggable={multiple}
+              onDragStart={multiple ? () => handleDragStart(i) : undefined}
+              onDragOver={multiple ? e => handleDragOver(e, i) : undefined}
+              onDrop={multiple ? () => handleDrop(i) : undefined}
+              onDragEnd={multiple ? handleDragEnd : undefined}
+              className={[
+                'relative group',
+                multiple ? 'cursor-grab active:cursor-grabbing' : '',
+                dragOver === i && dragIndex !== i ? 'ring-2 ring-blue-400 rounded' : '',
+                dragIndex === i ? 'opacity-50' : '',
+              ].join(' ')}
+            >
               <div className="relative w-24 h-24 border border-gray-200 rounded overflow-hidden">
                 <Image src={url} alt="" fill className="object-cover" sizes="96px" />
               </div>

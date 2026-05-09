@@ -81,10 +81,30 @@ export async function updateProperty(_prevState: State, formData: FormData): Pro
   redirect('/admin/properties')
 }
 
+function storagePath(url: string): string {
+  const marker = '/properties/'
+  const i = url.indexOf(marker)
+  return i >= 0 ? url.slice(i + marker.length) : url
+}
+
 export async function deleteProperty(id: string): Promise<void> {
   try { await requireAdmin() } catch { return }
 
   const adminClient = createAdminClient()
+
+  const { data: prop } = await adminClient
+    .from('properties')
+    .select('image, images')
+    .eq('id', id)
+    .single()
+
+  if (prop) {
+    const paths: string[] = []
+    if (prop.image) paths.push(storagePath(prop.image))
+    if (prop.images?.length) paths.push(...prop.images.map(storagePath))
+    if (paths.length) await adminClient.storage.from('properties').remove(paths)
+  }
+
   await adminClient.from('properties').delete().eq('id', id)
 
   revalidatePath('/admin/properties')

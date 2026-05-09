@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -16,6 +16,10 @@ interface InquiryFormProps {
 
 export function InquiryForm({ dict, propertyTitle, lang = 'en' }: InquiryFormProps) {
   const [state, formAction, pending] = useActionState(submitInquiry, undefined)
+  const [values, setValues] = useState({ name: '', email: '', phone: '', message: '' })
+  const set = (field: keyof typeof values) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setValues(v => ({ ...v, [field]: e.target.value }))
 
   if (state?.success) {
     return (
@@ -37,6 +41,8 @@ export function InquiryForm({ dict, propertyTitle, lang = 'en' }: InquiryFormPro
         </label>
         <Input
           name="name"
+          value={values.name}
+          onChange={set('name')}
           placeholder={dict.contact.namePlaceholder}
           required
           className="h-12 bg-background"
@@ -50,6 +56,8 @@ export function InquiryForm({ dict, propertyTitle, lang = 'en' }: InquiryFormPro
         <Input
           name="email"
           type="email"
+          value={values.email}
+          onChange={set('email')}
           placeholder={dict.contact.emailPlaceholder}
           required
           className="h-12 bg-background"
@@ -63,6 +71,8 @@ export function InquiryForm({ dict, propertyTitle, lang = 'en' }: InquiryFormPro
         <Input
           name="phone"
           type="tel"
+          value={values.phone}
+          onChange={set('phone')}
           placeholder={dict.contact.phonePlaceholder}
           className="h-12 bg-background"
         />
@@ -87,6 +97,8 @@ export function InquiryForm({ dict, propertyTitle, lang = 'en' }: InquiryFormPro
         </label>
         <Textarea
           name="message"
+          value={values.message}
+          onChange={set('message')}
           placeholder={dict.contact.messagePlaceholder}
           rows={4}
           className="bg-background resize-none"
