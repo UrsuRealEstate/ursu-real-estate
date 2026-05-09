@@ -32,18 +32,18 @@ export default async function HomePage({
           </ScrollReveal>
 
           <ScrollReveal delay={150}>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-foreground leading-[1.1] tracking-tight mb-8">
+            <h1 className="text-4xl sm:text-5xl font-serif text-foreground leading-[1.1] tracking-tight mb-8">
               {dict.hero.title}
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={300}>
-            <p className="text-lg sm:text-xl text-muted-foreground font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl text-muted-foreground font-light mb-12 max-w-2xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={450} className="mb-10">
+          {/*<ScrollReveal delay={450} className="mb-10">
             <Link href={`/${lang}#properties`}>
               <Button
                 size="lg"
@@ -53,7 +53,7 @@ export default async function HomePage({
                 <ArrowRight className="ml-3 h-4 w-4" />
               </Button>
             </Link>
-          </ScrollReveal>
+          </ScrollReveal>*/}
         </div>
       </section>
 
