@@ -38,7 +38,7 @@ export default async function HomePage({
           </ScrollReveal>*/}
 
           <ScrollReveal delay={300}>
-            <p className="text-4xl text-foreground font-bold mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-4xl text-foreground font-semibold mb-12 max-w-2xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </ScrollReveal>
