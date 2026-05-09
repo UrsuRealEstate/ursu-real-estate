@@ -60,7 +60,7 @@ export default async function HomePage({
       {/* Properties Section */}
       <section id="properties" className="py-20 lg:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
+          {/*<ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-serif tracking-tight mb-4">
                 {dict.properties.title}
@@ -70,7 +70,7 @@ export default async function HomePage({
               </p>
               <div className="w-16 h-[2px] bg-primary mx-auto mt-6" />
             </div>
-          </ScrollReveal>
+          </ScrollReveal>*/}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {properties.map((property, i) => (
