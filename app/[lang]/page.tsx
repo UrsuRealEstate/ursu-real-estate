@@ -31,14 +31,14 @@ export default async function HomePage({
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={150}>
+          {/*<ScrollReveal delay={150}>
             <h1 className="text-4xl sm:text-5xl font-serif text-foreground leading-[1.1] tracking-tight mb-8">
               {dict.hero.title}
             </h1>
-          </ScrollReveal>
+          </ScrollReveal>*/}
 
           <ScrollReveal delay={300}>
-            <p className="text-base sm:text-xl text-muted-foreground font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-4xl text-muted-foreground font-bold mb-12 max-w-2xl mx-auto leading-relaxed">
               {dict.hero.subtitle}
             </p>
           </ScrollReveal>
