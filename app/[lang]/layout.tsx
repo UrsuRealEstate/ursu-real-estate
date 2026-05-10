@@ -66,7 +66,7 @@ export default async function LocaleLayout({
       <FavoritesProvider>
         <div className="flex flex-col min-h-screen">
           <Header lang={lang as Locale} />
-          <main className="flex-1 overflow-x-hidden pt-20">
+          <main className="flex-1 overflow-x-hidden">
             {children}
           </main>
           <Footer lang={lang as Locale} />

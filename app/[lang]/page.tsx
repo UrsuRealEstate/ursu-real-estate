@@ -20,25 +20,33 @@ export default async function HomePage({
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[25vh] flex items-center justify-center overflow-hidden bg-background pt-5 border-b border-border">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808022_1px,transparent_1px),linear-gradient(to_bottom,#80808022_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-2">
+      <section
+        className="relative min-h-[40vh] flex items-end justify-center overflow-hidden mt-14 pt-20"
+        style={{
+          backgroundImage:
+            'url("/ChatGPT%20Image%20May%2010%2C%202026%2C%2006_19_53%20PM.png")',
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70" />
+        <div className="relative z-10 w-full text-center px-4 max-w-5xl mx-auto self-center pb-6">
           <ScrollReveal>
-            <div className="inline-flex items-center justify-center space-x-4 mb-8 uppercase tracking-[0.3em] text-xs text-primary font-medium">
-              <span className="w-12 h-[1px] bg-primary/50"></span>
+            <div className="inline-flex items-center justify-center space-x-4 mb-8 uppercase tracking-[0.3em] text-xs text-white font-medium">
+              <span className="w-12 h-[1px] bg-white/50"></span>
               <span>URSU Real Estate</span>
-              <span className="w-12 h-[1px] bg-primary/50"></span>
+              <span className="w-12 h-[1px] bg-white/50"></span>
             </div>
           </ScrollReveal>
 
           {/*<ScrollReveal delay={150}>
-            <h1 className="text-4xl sm:text-5xl font-serif text-foreground leading-[1.1] tracking-tight mb-8">
+            <h1 className="text-4xl sm:text-5xl font-serif text-white leading-[1.1] tracking-tight mb-8">
               {dict.hero.title}
             </h1>
           </ScrollReveal>*/}
 
           <ScrollReveal delay={300}>
-            <p className="text-4xl text-foreground font-semibold mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-3xl md:text-4xl  text-white font-semibold mb-0 max-w-2xl mx-auto leading-tight drop-shadow-lg">
               {dict.hero.subtitle}
             </p>
           </ScrollReveal>
@@ -47,7 +55,7 @@ export default async function HomePage({
             <Link href={`/${lang}#properties`}>
               <Button
                 size="lg"
-                className="h-14 px-10 uppercase tracking-widest text-sm bg-primary text-primary-foreground hover:bg-primary/90"
+                className="h-14 px-10 uppercase tracking-widest text-sm bg-white text-black hover:bg-white/90"
               >
                 {dict.hero.cta}
                 <ArrowRight className="ml-3 h-4 w-4" />
