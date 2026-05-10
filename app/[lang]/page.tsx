@@ -30,12 +30,17 @@ export default async function HomePage({
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70" />
-        <div className="relative z-10 w-full text-center px-4 max-w-5xl mx-auto self-center pb-6">
+        <div className="relative z-10 w-full text-center px-4 max-w-5xl mx-auto self-end pb-5">
           <ScrollReveal>
-            <div className="inline-flex items-center justify-center space-x-4 mb-8 uppercase tracking-[0.3em] text-xs text-white font-medium">
+            {/*<div className="inline-flex items-center justify-center space-x-4 mb-8 uppercase tracking-[0.3em] text-xs text-white font-medium">
               <span className="w-12 h-[1px] bg-white/50"></span>
               <span>URSU Real Estate</span>
               <span className="w-12 h-[1px] bg-white/50"></span>
+            </div>*/}
+            <div className="inline-flex items-center justify-center space-x-4 mb-8 uppercase tracking-[0.3em] text-[14px] md:text-xl  text-[#d3b879] font-base">
+              <span className="w-10 md:w-12 h-[1px]  bg-[#d3b879]/50"></span>
+              <span>URSU Real Estate</span>
+              <span className="w-10 md:w-12 h-[1px]  bg-[#d3b879]/50"></span>
             </div>
           </ScrollReveal>
 
@@ -45,11 +50,11 @@ export default async function HomePage({
             </h1>
           </ScrollReveal>*/}
 
-          <ScrollReveal delay={300}>
+          {/*<ScrollReveal delay={300}>
             <p className="text-3xl md:text-4xl  text-white font-semibold mb-0 max-w-2xl mx-auto leading-tight drop-shadow-lg">
               {dict.hero.subtitle}
             </p>
-          </ScrollReveal>
+          </ScrollReveal>*/}
 
           {/*<ScrollReveal delay={450} className="mb-10">
             <Link href={`/${lang}#properties`}>
@@ -64,21 +69,31 @@ export default async function HomePage({
           </ScrollReveal>*/}
         </div>
       </section>
-
+      <div className="flex items-center text-base font-extralight  text-[#d3b879] justify-center mx-auto gap-6 bg-primary p-2">
+        <p>Milano</p>
+        <p>Como</p>
+        <p>Portofino</p>
+      </div>
       {/* Properties Section */}
       <section id="properties" className="py-20 lg:py-28">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/*<ScrollReveal>
+          <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-serif tracking-tight mb-4">
+              {/*<h2 className="text-4xl sm:text-5xl font-serif tracking-tight mb-4">
                 {dict.properties.title}
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto">
                 {dict.properties.subtitle}
-              </p>
-              <div className="w-16 h-[2px] bg-primary mx-auto mt-6" />
+              </p>*/}
+              <h2 className="text-3xl sm:text-4xl font-serif text-[#c5a55a] tracking-tight mb-4">
+                {dict.hero.subtitle}
+              </h2>
+              {/*<p className="text-muted-foreground max-w-lg mx-auto">
+                {dict.properties.subtitle}
+              </p>*/}
+              <div className="w-16 h-[2px] bg-[#c5a55a] mx-auto mt-6" />
             </div>
-          </ScrollReveal>*/}
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {properties.map((property, i) => (
@@ -100,13 +115,13 @@ export default async function HomePage({
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <h2 className="text-4xl sm:text-5xl font-serif tracking-tight mb-4">
+              <h2 className="text-3xl sm:text-4xl text-[#c5a55a] font-serif tracking-tight mb-4">
                 {dict.about.title}
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto">
                 {dict.about.subtitle}
               </p>
-              <div className="w-16 h-[2px] bg-primary mx-auto mt-6" />
+              <div className="w-16 h-[2px] bg-[#c5a55a] mx-auto mt-6" />
             </div>
           </ScrollReveal>
 
