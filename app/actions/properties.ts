@@ -128,16 +128,23 @@ export async function updatePropertyPosition(id: string, newPosition: number): P
 }
 
 export async function swapPropertyPositions(id1: string, pos1: number, id2: string, pos2: number): Promise<void> {
-  try { await requireAdmin() } catch { return }
+  try { await requireAdmin() } catch (err) { console.error('Auth error:', err); return }
 
-  const adminClient = createAdminClient()
-  const now = new Date().toISOString()
+  try {
+    const adminClient = createAdminClient()
+    const now = new Date().toISOString()
 
-  await Promise.all([
-    adminClient.from('properties').update({ position: pos2, updated_at: now }).eq('id', id1),
-    adminClient.from('properties').update({ position: pos1, updated_at: now }).eq('id', id2),
-  ])
+    const results = await Promise.all([
+      adminClient.from('properties').update({ position: pos2, updated_at: now }).eq('id', id1),
+      adminClient.from('properties').update({ position: pos1, updated_at: now }).eq('id', id2),
+    ])
 
-  revalidatePath('/admin/properties')
-  revalidatePath('/', 'layout')
+    if (results[0].error) console.error('Update 1 error:', results[0].error)
+    if (results[1].error) console.error('Update 2 error:', results[1].error)
+
+    revalidatePath('/admin/properties')
+    revalidatePath('/', 'layout')
+  } catch (err) {
+    console.error('Swap error:', err)
+  }
 }
