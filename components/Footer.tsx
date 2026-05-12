@@ -36,6 +36,7 @@ export async function Footer({ lang }: { lang: Locale }) {
               {dict.contact.info}
             </h3>
             <p className="text-white/50 text-sm">{settings.address}</p>
+            {settings.pIva && <p className="text-white/50 text-sm">{dict.contact.pIva}: {settings.pIva}</p>}
             <p className="text-white/50 text-sm">{settings.email}</p>
             <p className="text-white/50 text-sm">{settings.phone}</p>
             {whatsappLink && (

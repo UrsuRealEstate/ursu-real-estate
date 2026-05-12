@@ -39,6 +39,13 @@ export default function SettingsForm({ current }: { current: ContactSettings }) 
         <Input id="whatsapp" name="whatsapp" type="tel" defaultValue={current.whatsapp} placeholder="+39 000 000 0000" />
       </div>
 
+      <div className="space-y-2">
+        <label htmlFor="pIva" className="text-sm font-medium text-gray-700">
+          P.IVA / Cod. fiscale
+        </label>
+        <Input id="pIva" name="pIva" type="text" defaultValue={current.pIva} placeholder="04762841003" />
+      </div>
+
       {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
       {state?.success && <p className="text-sm text-green-600">{state.success}</p>}
 

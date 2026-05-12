@@ -23,6 +23,7 @@ export async function updateContactSettings(
     phone:    formData.get('phone') as string,
     address:  formData.get('address') as string,
     whatsapp: formData.get('whatsapp') as string || '',
+    p_iva:   formData.get('pIva') as string || '',
     updated_at: new Date().toISOString(),
   }
 
