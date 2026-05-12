@@ -64,7 +64,7 @@ export default function ImageGallery({ images, title }: Props) {
     <div className="space-y-3">
       {/* Viewport — click opens lightbox */}
       <div
-        className="relative w-full aspect-[16/7] overflow-hidden border border-border group cursor-zoom-in"
+        className="relative w-full aspect-[16/9] overflow-hidden border border-border group cursor-zoom-in"
         onClick={() => setOpen(true)}
       >
         {/* Filmstrip */}
