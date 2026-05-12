@@ -7,17 +7,18 @@ const DEFAULTS: ContactSettings = {
   phone: '+39 02 1234 5678',
   address: 'Via Roma 15, 20121 Milano, Italy',
   whatsapp: '',
+  pIva: '',
 }
 
 export default async function SettingsPage() {
   const adminClient = createAdminClient()
   const { data } = await adminClient
     .from('contact_settings')
-    .select('email, phone, address, whatsapp')
+    .select('email, phone, address, whatsapp, p_iva')
     .eq('id', 1)
     .single()
 
-  const current: ContactSettings = (data as ContactSettings | null) ?? DEFAULTS
+  const current: ContactSettings = (data ? { ...data, pIva: data.p_iva || '' } : DEFAULTS) as ContactSettings
 
   return (
     <div className="p-8 space-y-6">
