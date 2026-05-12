@@ -26,7 +26,8 @@
     "back": "Back to Properties",
     "sqm": "m²",
     "floors": "Floors",
-    "lotSize": "Lot Size"
+    "lotSize": "Lot Size",
+    "sold": "Sold"
   },
   "about": {
     "title": "Excellence in Real Estate Investment",
@@ -54,8 +55,7 @@
     "messagePlaceholder": "Tell us what you are looking for...",
     "info": "Contact Information",
     "address": "Via Roma 15, 20121 Milano, Italy",
-    "workHours": "Working Hours",
-    "workHoursValue": "Mon — Fri: 9:00 — 18:00",
+    "whatsapp": "WhatsApp",
     "followUs": "Follow Us"
   },
   "footer": {

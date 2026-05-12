@@ -169,6 +169,20 @@ export default function PropertyForm({ current }: Props) {
             />
             <label htmlFor="is_active" className="text-sm font-medium text-gray-700">Active (visible on site)</label>
           </div>
+          <div className="flex items-center gap-2 self-end pb-2">
+            <input
+              type="checkbox"
+              name="is_sold"
+              id="is_sold"
+              defaultChecked={current?.is_sold ?? false}
+              className="w-4 h-4 rounded border-gray-300"
+            />
+            <label htmlFor="is_sold" className="text-sm font-medium text-gray-700 text-red-600">Sold</label>
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-gray-700">Position <span className="text-gray-400 font-normal">(lower = first)</span></label>
+            <Input name="position" type="number" min="0" defaultValue={current?.position ?? 0} placeholder="0" />
+          </div>
         </div>
       </Section>
 

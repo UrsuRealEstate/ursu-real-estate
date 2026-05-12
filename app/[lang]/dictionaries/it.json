@@ -26,7 +26,8 @@
     "back": "Torna alle Proprietà",
     "sqm": "m²",
     "floors": "Piani",
-    "lotSize": "Sup. Lotto"
+    "lotSize": "Sup. Lotto",
+    "sold": "Venduto"
   },
   "about": {
     "title": "Excellence in Real Estate Investment",
@@ -54,8 +55,7 @@
     "messagePlaceholder": "Raccontaci cosa stai cercando...",
     "info": "Informazioni di Contatto",
     "address": "Via Roma 15, 20121 Milano, Italia",
-    "workHours": "Orari di Lavoro",
-    "workHoursValue": "Lun — Ven: 9:00 — 18:00",
+    "whatsapp": "WhatsApp",
     "followUs": "Seguici"
   },
   "footer": {

@@ -16,6 +16,7 @@ export interface Property {
   image: string
   images: string[]
   features: { en: string[]; ru: string[]; it: string[] }
+  is_sold: boolean
 }
 
 export interface PropertyRow {
@@ -35,6 +36,8 @@ export interface PropertyRow {
   image: string
   images: string[]
   is_active: boolean
+  is_sold: boolean
+  position: number
 }
 
 export function splitFeatures(s: string): string[] {
@@ -83,6 +86,7 @@ export function rowToProperty(row: PropertyRow): Property {
     lot_size: row.lot_size ?? null,
     image: row.image,
     images: row.images ?? [],
+    is_sold: row.is_sold ?? false,
   }
 }
 

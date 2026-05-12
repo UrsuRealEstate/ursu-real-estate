@@ -1,15 +1,19 @@
 import { notFound } from 'next/navigation'
 import { getDictionary, hasLocale, type Locale } from '../dictionaries'
-import { getContactSettings, formatWorkHours } from '@/lib/settings'
+import { getContactSettings } from '@/lib/settings'
 import { InquiryForm } from '@/components/InquiryForm'
 import { ScrollReveal } from '@/components/ScrollReveal'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react'
 
 export default async function ContactsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params
   if (!hasLocale(lang)) notFound()
   const dict = await getDictionary(lang as Locale)
   const settings = await getContactSettings()
+
+  const whatsappLink = settings.whatsapp
+    ? `https://wa.me/${settings.whatsapp.replace(/[\s\-()]/g, '')}`
+    : null
 
   return (
     <div className="min-h-screen py-12 lg:py-20">
@@ -76,19 +80,28 @@ export default async function ContactsPage({ params }: { params: Promise<{ lang:
                 </div>
               </ScrollReveal>
 
-              <ScrollReveal delay={400}>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-5 w-5 text-primary" />
+              {whatsappLink && (
+                <ScrollReveal delay={400}>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                      <MessageCircle className="h-5 w-5 text-green-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
+                        {dict.contact.whatsapp}
+                      </h3>
+                      <a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-green-600 hover:text-green-700 transition-colors"
+                      >
+                        {settings.whatsapp}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-medium mb-1 uppercase tracking-wider text-sm">
-                      {dict.contact.workHours}
-                    </h3>
-                    <p className="text-muted-foreground">{formatWorkHours(settings, lang)}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
+                </ScrollReveal>
+              )}
             </div>
           </div>
 

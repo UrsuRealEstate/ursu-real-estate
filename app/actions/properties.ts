@@ -47,6 +47,8 @@ function buildPayload(formData: FormData, includeId = true) {
     image: formData.get('image') as string || '',
     images,
     is_active: formData.get('is_active') === 'on',
+    is_sold: formData.get('is_sold') === 'on',
+    position: parseInt(formData.get('position') as string, 10) || 0,
     updated_at: new Date().toISOString(),
   }
 }
@@ -110,4 +112,32 @@ export async function deleteProperty(id: string): Promise<void> {
   revalidatePath('/admin/properties')
   revalidatePath('/', 'layout')
   redirect('/admin/properties')
+}
+
+export async function updatePropertyPosition(id: string, newPosition: number): Promise<void> {
+  try { await requireAdmin() } catch { return }
+
+  const adminClient = createAdminClient()
+  await adminClient
+    .from('properties')
+    .update({ position: newPosition, updated_at: new Date().toISOString() })
+    .eq('id', id)
+
+  revalidatePath('/admin/properties')
+  revalidatePath('/', 'layout')
+}
+
+export async function swapPropertyPositions(id1: string, pos1: number, id2: string, pos2: number): Promise<void> {
+  try { await requireAdmin() } catch { return }
+
+  const adminClient = createAdminClient()
+  const now = new Date().toISOString()
+
+  await Promise.all([
+    adminClient.from('properties').update({ position: pos2, updated_at: now }).eq('id', id1),
+    adminClient.from('properties').update({ position: pos1, updated_at: now }).eq('id', id2),
+  ])
+
+  revalidatePath('/admin/properties')
+  revalidatePath('/', 'layout')
 }

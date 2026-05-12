@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, MapPin, Maximize, BedDouble, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -24,6 +24,36 @@ export function PropertyCard({ property, lang, dict, priority = false }: Propert
   const slides = [...new Set([property.image, ...property.images].filter(Boolean))].slice(0, 5)
   const n = slides.length
   const [current, setCurrent] = useState(0)
+
+  // Touch swipe handling
+  const touchStartX = useRef(0)
+  const touchDeltaX = useRef(0)
+  const isSwiping = useRef(false)
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+    touchDeltaX.current = 0
+    isSwiping.current = false
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current
+    if (Math.abs(touchDeltaX.current) > 10) {
+      isSwiping.current = true
+    }
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    if (n <= 1) return
+    const threshold = 50
+    if (touchDeltaX.current < -threshold) {
+      setCurrent(i => (i + 1) % n)
+    } else if (touchDeltaX.current > threshold) {
+      setCurrent(i => (i - 1 + n) % n)
+    }
+    touchDeltaX.current = 0
+    isSwiping.current = false
+  }, [n])
 
   const prevSlide = (e: React.MouseEvent) => {
     e.preventDefault(); e.stopPropagation()
@@ -50,6 +80,9 @@ export function PropertyCard({ property, lang, dict, priority = false }: Propert
             width: `${n * 100}%`,
             transform: `translateX(-${current * (100 / n)}%)`,
           }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           {slides.map((src, i) => (
             <Link
@@ -58,6 +91,7 @@ export function PropertyCard({ property, lang, dict, priority = false }: Propert
               className="relative h-full flex-shrink-0 block overflow-hidden"
               style={{ width: `${100 / n}%` }}
               tabIndex={i === current ? 0 : -1}
+              onClick={(e) => { if (isSwiping.current) e.preventDefault() }}
             >
               <Image
                 src={src}
@@ -74,6 +108,15 @@ export function PropertyCard({ property, lang, dict, priority = false }: Propert
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]" />
+
+        {/* Sold Badge */}
+        {property.is_sold && (
+          <div className="absolute top-4 left-4 z-10">
+            <span className="inline-flex items-center px-3 py-1.5 bg-red-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
+              {dict.properties.sold}
+            </span>
+          </div>
+        )}
 
         {/* Arrows */}
         {n > 1 && (
@@ -159,7 +202,7 @@ export function PropertyCard({ property, lang, dict, priority = false }: Propert
         )}
 
         <div className="flex items-center justify-between pt-4 border-t border-border">
-          <p className="text-xl font-semibold text-primary">
+          <p className={`text-xl font-semibold ${property.is_sold ? 'text-muted-foreground line-through' : 'text-primary'}`}>
             {property.price ? formatPrice(property.price, property.currency) : '—'}
           </p>
           <Link

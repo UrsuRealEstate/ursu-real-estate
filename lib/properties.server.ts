@@ -16,6 +16,7 @@ export async function getPropertiesFromDB(): Promise<Property[]> {
       .from('properties')
       .select('*')
       .eq('is_active', true)
+      .order('position', { ascending: true })
       .order('created_at', { ascending: false })
 
     if (error || !data?.length) return []
@@ -47,6 +48,7 @@ export async function getAllPropertiesAdmin(): Promise<PropertyRow[]> {
   const { data } = await adminClient
     .from('properties')
     .select('*')
+    .order('position', { ascending: true })
     .order('created_at', { ascending: false })
   return (data ?? []) as PropertyRow[]
 }

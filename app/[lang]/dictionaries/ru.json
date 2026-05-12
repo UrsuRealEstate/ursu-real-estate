@@ -26,7 +26,8 @@
     "back": "Назад к объектам",
     "sqm": "м²",
     "floors": "Этажей",
-    "lotSize": "Площадь участка"
+    "lotSize": "Площадь участка",
+    "sold": "Продано"
   },
   "about": {
     "title": "Excellence in Real Estate Investment",
@@ -54,8 +55,7 @@
     "messagePlaceholder": "Расскажите, что вы ищете...",
     "info": "Контактная информация",
     "address": "Via Roma 15, 20121 Milano, Italy",
-    "workHours": "Часы работы",
-    "workHoursValue": "Пн — Пт: 9:00 — 18:00",
+    "whatsapp": "WhatsApp",
     "followUs": "Мы в соцсетях"
   },
   "footer": {

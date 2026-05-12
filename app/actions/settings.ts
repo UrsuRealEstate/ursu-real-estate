@@ -19,13 +19,11 @@ export async function updateContactSettings(
 
   const payload = {
     id: 1,
-    email:           formData.get('email') as string,
-    phone:           formData.get('phone') as string,
-    address:         formData.get('address') as string,
-    work_days:       formData.get('work_days') as string,
-    work_time_open:  formData.get('work_time_open') as string,
-    work_time_close: formData.get('work_time_close') as string,
-    updated_at:      new Date().toISOString(),
+    email:    formData.get('email') as string,
+    phone:    formData.get('phone') as string,
+    address:  formData.get('address') as string,
+    whatsapp: formData.get('whatsapp') as string || '',
+    updated_at: new Date().toISOString(),
   }
 
   const adminClient = createAdminClient()

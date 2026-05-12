@@ -6,16 +6,14 @@ const DEFAULTS: ContactSettings = {
   email: 'info@ursurealestate.com',
   phone: '+39 02 1234 5678',
   address: 'Via Roma 15, 20121 Milano, Italy',
-  work_days: 'Mon,Tue,Wed,Thu,Fri',
-  work_time_open: '09:00',
-  work_time_close: '18:00',
+  whatsapp: '',
 }
 
 export default async function SettingsPage() {
   const adminClient = createAdminClient()
   const { data } = await adminClient
     .from('contact_settings')
-    .select('email, phone, address, work_days, work_time_open, work_time_close')
+    .select('email, phone, address, whatsapp')
     .eq('id', 1)
     .single()
 

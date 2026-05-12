@@ -121,9 +121,16 @@ export default async function PropertyPage({
               </h1>
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
-                <p className="text-3xl sm:text-4xl font-semibold text-primary">
-                  {property.price ? formatPrice(property.price, property.currency) : '—'}
-                </p>
+                <div className="flex items-center gap-4">
+                  <p className={`text-3xl sm:text-4xl font-semibold ${property.is_sold ? 'text-muted-foreground line-through' : 'text-primary'}`}>
+                    {property.price ? formatPrice(property.price, property.currency) : '—'}
+                  </p>
+                  {property.is_sold && (
+                    <span className="inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-bold uppercase tracking-wider">
+                      {d.sold ?? 'Sold'}
+                    </span>
+                  )}
+                </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <PropertyActions propertyId={property.id} dict={dict} />
                   <ShareButton title={property.title[locale]} text={property.description[locale]} lang={locale} />

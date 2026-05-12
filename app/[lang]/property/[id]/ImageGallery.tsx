@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Camera, X } from 'lucide-react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
@@ -10,10 +10,39 @@ interface Props {
   title: string
 }
 
+function useSwipe(n: number, setCurrent: React.Dispatch<React.SetStateAction<number>>) {
+  const touchStartX = useRef(0)
+  const touchDeltaX = useRef(0)
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+    touchDeltaX.current = 0
+  }, [])
+
+  const onTouchMove = useCallback((e: React.TouchEvent) => {
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current
+  }, [])
+
+  const onTouchEnd = useCallback(() => {
+    if (n <= 1) return
+    const threshold = 50
+    if (touchDeltaX.current < -threshold) {
+      setCurrent(i => (i + 1) % n)
+    } else if (touchDeltaX.current > threshold) {
+      setCurrent(i => (i - 1 + n) % n)
+    }
+    touchDeltaX.current = 0
+  }, [n, setCurrent])
+
+  return { onTouchStart, onTouchMove, onTouchEnd }
+}
+
 export default function ImageGallery({ images, title }: Props) {
   const [current, setCurrent] = useState(0)
   const [open, setOpen] = useState(false)
   const n = images.length
+
+  const swipeHandlers = useSwipe(n, setCurrent)
 
   // Arrow key navigation inside lightbox
   useEffect(() => {
@@ -45,6 +74,9 @@ export default function ImageGallery({ images, title }: Props) {
             width: `${n * 100}%`,
             transform: `translateX(-${current * (100 / n)}%)`,
           }}
+          onTouchStart={swipeHandlers.onTouchStart}
+          onTouchMove={swipeHandlers.onTouchMove}
+          onTouchEnd={swipeHandlers.onTouchEnd}
         >
           {images.map((src, i) => (
             <div
@@ -139,6 +171,9 @@ export default function ImageGallery({ images, title }: Props) {
                   width: `${n * 100}%`,
                   transform: `translateX(-${current * (100 / n)}%)`,
                 }}
+                onTouchStart={swipeHandlers.onTouchStart}
+                onTouchMove={swipeHandlers.onTouchMove}
+                onTouchEnd={swipeHandlers.onTouchEnd}
               >
                 {images.map((src, i) => (
                   <div
